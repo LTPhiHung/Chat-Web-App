@@ -15,7 +15,7 @@ export default function AuthProvider({ children }) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const unsubcribed = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       console.log(user)
       if(user) {
         const { displayName, email, photoURL } = user;
@@ -29,6 +29,8 @@ export default function AuthProvider({ children }) {
         navigate('/');
       }
       else {
+        setUser({});
+        setIsLoading(false);
         toast.error('Login fail', {
           position: toast.POSITION.BOTTOM_CENTER,
         });
@@ -37,7 +39,7 @@ export default function AuthProvider({ children }) {
     })
       // clean function
       return () => {
-        unsubcribed();
+        unsubscribe();
       }
   }, [navigate])
   return (

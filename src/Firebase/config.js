@@ -2,7 +2,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, FacebookAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-
 const firebaseConfig = {
   apiKey: "AIzaSyDJILjymtm8l7RtW8w5Nsig_mjnQVAnYnk",
   authDomain: "chat-web-app-69be3.firebaseapp.com",
@@ -15,11 +14,10 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
 const auth = getAuth(app);
 const provider = new FacebookAuthProvider();
 
-const database = getFirestore(app);
+const db = getFirestore(app);
 
-export { auth, provider, database }
+export { auth, provider, db }
 // export default app;
